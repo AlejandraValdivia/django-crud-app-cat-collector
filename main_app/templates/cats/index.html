@@ -13,6 +13,16 @@
   <img src="{% static 'images/cat-in-box.svg' %}" alt="A cat in a box" />
 </section>
 
+<h1>Cat List</h1>
+<ul class="cat-list">
+  {% for cat in cats %}
+    <li>
+      <a href="{% url 'cat-detail' cat.id %}">{{ cat.name }}</a>
+    </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
 <section class="card-container">
   {% for cat in cats %}
     <div class="card">

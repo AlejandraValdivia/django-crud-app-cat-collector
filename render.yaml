@@ -1,0 +1,22 @@
+databases:
+  - name: catcollector_9f79
+    plan: free
+    databaseName: catcollector
+    user: catcollector_9f79_user
+
+services:
+  - type: web
+    plan: free
+    name: catcollector_9f79
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "python -m gunicorn catcollector.asgi:application -k uvicorn.workers.UvicornWorker"
+    envVars:
+      - key: postgresql://alejandravaldivia:P8vJaQAFzG69y8ZrIepC0B0I8HC8WVLz@dpg-cr168qtds78s739ptcng-a.oregon-postgres.render.com/catcollector_9f79
+        fromDatabase:
+          name: catcollector_9f79
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4 
