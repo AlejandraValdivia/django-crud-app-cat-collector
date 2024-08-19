@@ -12,7 +12,7 @@ services:
     buildCommand: "./build.sh"
     startCommand: "python -m gunicorn catcollector.asgi:application -k uvicorn.workers.UvicornWorker"
     envVars:
-      - key: postgresql://alejandravaldivia:P8vJaQAFzG69y8ZrIepC0B0I8HC8WVLz@dpg-cr168qtds78s739ptcng-a.oregon-postgres.render.com/catcollector_9f79
+      - key: DATABASE_URL
         fromDatabase:
           name: catcollector_9f79
           property: connectionString
