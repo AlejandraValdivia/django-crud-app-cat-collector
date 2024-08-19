@@ -11,23 +11,47 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 import os
-from pathlib import Path
 import dj_database_url
+from environ import Env
 from dotenv import load_dotenv
 
+from pathlib import Path
+
 load_dotenv()
+env = Env()
 
-
-DB_NAME = os.getenv("DB_NAME", "default_val")
-print(DB_NAME)
-
-
-
-SECRET_KEY = str(os.environ.get('SECRET_KEY'))
-print(os.environ['SECRET_KEY'])
-
-DEBUG = os.getenv('DEBUG') == 'TRUE'
+SECRET_KEY = os.getenv('SECRET_KEY')
+DEBUG = os.getenv('DEBUG')
 DATABASE_URL = os.getenv('DATABASE_URL')
+
+DATABASES = {
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default=DATABASE_URL,
+        conn_max_age=600
+    )
+}
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': env('DB_NAME'),
+#         'USER': env('DB_USER'),
+#         'PASSWORD': env('DB_PASSWORD'),
+#         'HOST': env('DB_HOST'),
+#         'PORT': env('DB_PORT', default='5432'),
+#     }
+# }
+
+
+print("DB_USER:", env('DB_USER'))
+print("DB_PASSWORD:", env('DB_PASSWORD'))
+print("DB_NAME:", env('DB_NAME'))
+print("DB_HOST:", env('DB_HOST'))
+print("DB_PORT:", env('DB_PORT'))
+
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,7 +65,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'catcollector-x3aj.onrender.com',
+    'https://catcollector-x3aj.onrender.com'
+    ]
 
 
 # Application definition
@@ -91,26 +118,8 @@ WSGI_APPLICATION = 'catcollector.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'catcollector',
-#     }
-# }
-
-DATABASES = {
-    'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default=DATABASE_URL,
-        conn_max_age=600
-    )
-}
 
 
-
-print(f"DATABASE_URL: {DATABASE_URL}")
-
-# DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 
 # Password validation
@@ -145,15 +154,12 @@ USE_TZ = True
 
 LOGIN_URL = '/login/'
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
 
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
