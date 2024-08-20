@@ -67,7 +67,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 ALLOWED_HOSTS = [
     'catcollector-x3aj.onrender.com',
-    'https://catcollector-x3aj.onrender.com'
+    'https://catcollector-x3aj.onrender.com',
+    '127.0.0.1',
     ]
 
 
