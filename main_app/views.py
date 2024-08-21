@@ -18,12 +18,18 @@ def cat_index(request):
 
 def cat_detail(request, cat_id):
     cat = Cat.objects.get(id=cat_id)
+    toys = Toy.objects.all()  # Fetch all toys
     feeding_form = FeedingForm()
-    return render(request, 'cats/detail.html', {'cat': cat, 'feeding_form': feeding_form})
+    return render(request, 'cats/detail.html', {
+        'cat': cat,
+        'feeding_form': feeding_form,
+        'toys': toys  # Pass toys to the template
+    })
+
 
 class CatCreate(CreateView):
     model = Cat
-    fields = '__all__'
+    fields = ['name', 'breed', 'description', 'age']
     success_url = '/cats/'
 
 class CatUpdate(UpdateView):
