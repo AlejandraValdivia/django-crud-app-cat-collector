@@ -18,13 +18,17 @@ def cat_index(request):
 
 def cat_detail(request, cat_id):
     cat = Cat.objects.get(id=cat_id)
-    toys = Toy.objects.all()  # Fetch all toys
+
+    # Only get the toys the cat does not have
+    toys_cat_doesnt_have = Toy.objects.exclude(id__in = cat.toys.all().values_list('id'))
+
     feeding_form = FeedingForm()
     return render(request, 'cats/detail.html', {
         'cat': cat,
         'feeding_form': feeding_form,
-        'toys': toys  # Pass toys to the template
+        'toys': toys_cat_doesnt_have  # send those toys
     })
+
 
 
 class CatCreate(CreateView):
