@@ -46,7 +46,7 @@ Create a .env file in the root directory and add the following:
 ``DB_NAME=catcollector_9f79``
 ``DB_USER=your-db-username``
 ``DB_PASSWORD=your-db-password``
-``DB_HOST=dpg-cr168qtds78s739ptcng-a.oregon-postgres.render.com``
+``DB_HOST=your-postgresql-database-connection-string``
 ``DB_PORT=5432``
 
 ### Set up the database
