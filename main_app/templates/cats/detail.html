@@ -79,21 +79,28 @@
       <img src="{% static 'images/mouse.svg' %}" alt="A mouse" />
       <img src="{% static 'images/fish.svg' %}" alt="A fishy toy" />
     </div>
-    <h3>Available Toys</h3>
+
+    <!-- displaying a cat's toys -->
+    <h3>{{ cat.name }}'s Toys</h3>
     <div class="subsection-content">
-      {% for toy in toys %}
+      {% if cat.toys.count %} {% for toy in cat.toys.all %}
       <div class="toy-container">
         <div
           class="color-block"
           style="background-color: {{ toy.color }}"
         ></div>
-        <p>{{ toy.color }} {{ toy.name }}</p>
-        <form action="" method="post">
-          {% csrf_token %}
-          <button type="submit" class="btn submit">Give Toy</button>
-        </form>
+        <a href="{% url 'toy-detail' toy.id %}">
+          <p>A {{ toy.color }} {{ toy.name }}</p>
+        </a>
       </div>
-      {% endfor %}
+      {% endfor %} {% else %}
+      <p class="no-toys">{{cat.name}} doesn't have any toys!</p>
+      {% endif %}
+    </div>
+
+    <h3>Available Toys</h3>
+    <div class="subsection-content">
+      <!-- Available toys here -->
     </div>
   </section>
 </div>
