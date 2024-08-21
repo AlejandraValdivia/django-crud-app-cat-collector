@@ -79,3 +79,12 @@ def associate_toy(request, cat_id, toy_id):
     # Note that you can pass a toy's id instead of the whole object
     Cat.objects.get(id=cat_id).toys.add(toy_id)
     return redirect('cat-detail', cat_id=cat_id)
+
+def remove_toy(request, cat_id, toy_id):
+    # Look up the cat
+    cat = Cat.objects.get(id=cat_id)
+    # Look up the toy
+    toy = Toy.objects.get(id=toy_id)
+    # Remove the toy from the cat
+    cat.toys.remove(toy)
+    return redirect('cat-detail', cat_id=cat.id)
