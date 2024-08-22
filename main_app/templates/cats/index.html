@@ -11,37 +11,28 @@
 </section>
 
 <section class="page-content">
-<h1>Cat List</h1>
-<ul class="cat-list">
-  {% for cat in cats %}
-  <li>
-    <a href="{% url 'cat-detail' cat.id %}">{{ cat.name }}</a>
-  </li>
-  {% endfor %}
-</ul>
-</section>
-<section class="card-container">
-  {% for cat in cats %}
-  <div class="card">
-    <a href="{% url 'cat-detail' cat.id %}">
-      <div class="card-content">
-        <div class="card-img-container">
-          <img
-            src="{% static 'images/sk8r-boi-cat.svg' %}"
-            alt="A skater boy cat"
-          />
+  <section class="card-container">
+    {% for cat in cats %}
+    <div class="card">
+      <a href="{% url 'cat-detail' cat.id %}">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img
+              src="{% static 'images/sk8r-boi-cat.svg' %}"
+              alt="A skater boy cat"
+            />
+          </div>
+          <h2 class="card-title">{{ cat.name }}</h2>
+          {% if cat.age > 0 %}
+          <p>A {{ cat.age }} year old {{ cat.breed }}</p>
+          {% else %}
+          <p>A {{ cat.breed }} kitten.</p>
+          {% endif %}
+          <p><small>{{ cat.description }}</small></p>
         </div>
-        <h2 class="card-title">{{ cat.name }}</h2>
-        {% if cat.age > 0 %}
-        <p>A {{ cat.age }} year old {{ cat.breed }}</p>
-        {% else %}
-        <p>A {{ cat.breed }} kitten.</p>
-        {% endif %}
-        <p><small>{{ cat.description }}</small></p>
-      </div>
-    </a>
-  </div>
-  {% endfor %}
+      </a>
+    </div>
+    {% endfor %}
+  </section>
 </section>
-
 {% endblock %}

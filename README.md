@@ -1,7 +1,8 @@
 ## Cat Collector 
 
 ![homepage](staticfiles/images/catcollector-homepage.jpg)
-![feeding](staticfiles/images/feeding-form-cat-collector.jpg)
+![feeding](staticfiles/images/mario-cat-collector.png)
+![kittens](staticfiles/images/mcdatepicker-screenshot.jpg)
 
 Cat Collector is a Django-based web application that allows users to manage a collection of cats. The application features a user-friendly interface for viewing, adding, editing, and deleting cat entries.
 
