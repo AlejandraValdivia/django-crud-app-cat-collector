@@ -160,6 +160,8 @@ LOGIN_URL = '/login/'
 
 STATIC_URL = '/static/'
 
+LOGIN_REDIRECT_URL = 'cat-index'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
