@@ -1,6 +1,21 @@
-{% extends 'base.html' %} {% load static %} {% block head %}
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<!-- New MCDatepicker CSS -->
+<link 
+  href="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.css" 
+  rel="stylesheet" 
+/>
+<link rel="stylesheet" href="{% static 'css/mcdp.css' %}">
+<!-- MCDatepicker JS -->
+<script 
+  src="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.js"
+>
+</script>
 <link rel="stylesheet" href="{% static 'css/cats/cat-detail.css' %}" />
-{% endblock %} {% block content %}
+{% endblock %} 
+
+{% block content %}
 
 <section class="cat-container">
   <div class="cat-img">
@@ -125,4 +140,7 @@
   </section>
 </div>
 
+<script defer src="{% static 'js/cat-detail.js' %}"></script>
+
 {% endblock %}
+
